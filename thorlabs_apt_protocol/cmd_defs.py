@@ -16,6 +16,7 @@ import struct
 
 header_only_struct = "<H2b2B"
 header_data_struct = "<2H2B"
+header_size = 6
 
 
 cmd_list = {
@@ -1239,10 +1240,20 @@ cmd_list = {
         {
             "msg_id": 0x0464,
             "fxn_name": "mot_move_completed",  # add motstatus motdcstatus p83
-            "header_only": True,
+            "header_only": False,
             "has_subcmds": False,
-            "struct": "",
-            "params": ["msg_id", "chanident", "", "dst", "src"],
+            "struct": "<Hl2hL",
+            "params": [
+                "msg_id",
+                "",
+                "dst",
+                "src",
+                "chanident",
+                "position",
+                "velocity",
+                "motorcurrent",
+                "statusbits",
+            ],
         },
         {
             "msg_id": 0x0453,
@@ -1279,10 +1290,20 @@ cmd_list = {
         {
             "msg_id": 0x0466,
             "fxn_name": "mot_move_stopped",  # short version p89
-            "header_only": True,
+            "header_only": False,
             "has_subcmds": False,
-            "struct": "",
-            "params": ["msg_id", "0x0E", "0", "dst", "src"],
+            "struct": "<Hl2hL",
+            "params": [
+                "msg_id",
+                "0x0E",
+                "dst",
+                "src",
+                "chanident",
+                "position",
+                "velocity",
+                "motorcurrent",
+                "statusbits",
+            ],
         },
         {
             "msg_id": 0x04F4,
@@ -2102,7 +2123,7 @@ cmd_list = {
             "fxn_name": "mot_get_kcubetrigconfig",
             "header_only": False,
             "has_subcmds": False,
-            "struct": "<6H",
+            "struct": "<6H10s",
             "params": [
                 "msg_id",
                 "",
@@ -2114,14 +2135,15 @@ cmd_list = {
                 "trig2mode",
                 "trig2polarity",
                 "",
+                "",
             ],
         },
         {
             "msg_id": 0x0526,
-            "fxn_name": "mot_set_kcubepostrigparams",
+            "fxn_name": "mot_set_kcubepostrigparams",  # See 0x0528
             "header_only": False,
             "has_subcmds": False,
-            "struct": "<H8L",
+            "struct": "<H8L3L",
             "params": [
                 "msg_id",
                 "",
@@ -2136,6 +2158,9 @@ cmd_list = {
                 "numpulsesrev",
                 "pulsewidth",
                 "numcycles",
+                "",
+                "",
+                "",
             ],
         },
         {
@@ -2148,10 +2173,10 @@ cmd_list = {
         },
         {
             "msg_id": 0x0528,
-            "fxn_name": "mot_get_kcubepostrigparams",
+            "fxn_name": "mot_get_kcubepostrigparams",  # Manual says 36 bytes, but machine sends 52 bytes
             "header_only": False,
             "has_subcmds": False,
-            "struct": "<H8L",
+            "struct": "<H8L3L",
             "params": [
                 "msg_id",
                 "",
@@ -2166,6 +2191,9 @@ cmd_list = {
                 "numpulsesrev",
                 "pulsewidth",
                 "numcycles",
+                "",
+                "",
+                "",
             ],
         },
         {
@@ -3772,6 +3800,7 @@ cmd_list = {
 
 id_to_cmd = {}
 
+
 def build_id_to_cmd():
     for k in cmd_list.keys():
         for c in cmd_list[k]:
@@ -3807,7 +3836,9 @@ def cleanup():
             else:  # data fxn
                 try:
                     assert len(c["params"]) >= 4
-                    assert c["params"][1] == ""
+
+                    if c["msg_id"] != 0x0466:  # 0x0466 is a special case
+                        assert c["params"][1] == ""
                     assert c["params"][2] == "dst"
                     assert c["params"][3] == "src"
 
@@ -3839,6 +3870,7 @@ def cleanup():
                 except AssertionError as e:
                     print(c)
                     raise (e)
+
 
 cleanup()
 build_id_to_cmd()
