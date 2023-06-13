@@ -1,9 +1,12 @@
-from typing import Dict, Any
+from typing import Dict, Any, Union
 import struct
 from . import cmd_defs
 
 
-def unpack(data: bytes, return_bytes=False) -> Dict[str, Any]:
+def unpack(data: bytes, return_bytes=False) -> Union[Dict[str, Any], None]:
+    if len(data) < cmd_defs.header_size:
+        return None
+
     header = data[: cmd_defs.header_size]
 
     msg_id, _, dst, src = struct.unpack_from(cmd_defs.header_data_struct, header)
