@@ -91,6 +91,8 @@ def unpack_next(com, return_bytes=False, timeout=30, interval=0.5, no_error=Fals
 
         if int(time.time()) - start_t > timeout or timeout == 0:
             if no_error:
+                if return_bytes:
+                    return (None, None)
                 return None
             raise TimeoutError("Timeout waiting for header")
         
