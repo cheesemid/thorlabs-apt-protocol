@@ -305,7 +305,7 @@ cmd_list = {
             ],
         },
         {
-            "msg_id": 0x0012,
+            "msg_id": 0x0687,
             "fxn_name": "kna_set_nttialpfiltercoeffs",
             "header_only": False,
             "has_subcmds": False,
