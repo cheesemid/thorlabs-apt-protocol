@@ -234,7 +234,7 @@ cmd_list = {
             "header_only": True,
             "has_subcmds": False,
             "struct": "",
-            "params": ["msg_id", "", "dst", "src"],
+            "params": ["msg_id", "", "", "dst", "src"],
         },
         {
             "msg_id": 0x068E,
