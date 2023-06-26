@@ -13,6 +13,8 @@ implemented_prefixes = [
     "ld",
     "mod",
     "mot",
+    "nt",
+    "pz",
     "rack",
 ]
 
