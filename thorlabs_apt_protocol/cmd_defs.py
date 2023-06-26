@@ -231,15 +231,10 @@ cmd_list = {
         {
             "msg_id": 0x068B,
             "fxn_name": "kna_req_kcubemmiparams",
-            "header_only": False,
+            "header_only": True,
             "has_subcmds": False,
             "struct": "",
-            "params": [
-                "msg_id",
-                "",
-                "dst",
-                "src"
-                ],
+            "params": ["msg_id", "", "dst", "src"],
         },
         {
             "msg_id": 0x068E,

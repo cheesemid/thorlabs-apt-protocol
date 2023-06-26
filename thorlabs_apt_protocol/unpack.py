@@ -4,7 +4,9 @@ import time
 from . import cmd_defs
 
 
-def unpack(data: bytes, return_bytes=False) -> Union[Dict[str, Any], Tuple[Dict[str, Any], bytes], None]:
+def unpack(
+    data: bytes, return_bytes=False
+) -> Union[Dict[str, Any], Tuple[Dict[str, Any], bytes], None]:
     if len(data) < cmd_defs.header_size:
         return None
 
@@ -77,8 +79,8 @@ def unpack_stream(com, return_bytes=False):
         else:
             yield ret
 
-def unpack_next(com, return_bytes=False, timeout=30, interval=0.5, no_error=False):
 
+def unpack_next(com, return_bytes=False, timeout=30, interval=0.5, no_error=False):
     header = b""
 
     start_t = int(time.time())
@@ -95,7 +97,7 @@ def unpack_next(com, return_bytes=False, timeout=30, interval=0.5, no_error=Fals
                     return (None, None)
                 return None
             raise TimeoutError("Timeout waiting for header")
-        
+
         time.sleep(interval)
 
     msg_id, _, dst, src = struct.unpack_from(cmd_defs.header_data_struct, header)
