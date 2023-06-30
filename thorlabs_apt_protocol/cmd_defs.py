@@ -1246,9 +1246,10 @@ cmd_list = {
             "msg_id": 0x0453,
             "fxn_name": "mot_move_absolute",  # short version
             "header_only": True,
-            "has_subcmds": False,
-            "struct": "",
+            "has_subcmds": True,
+            "struct": "",  # long version: <Hl
             "params": ["msg_id", "chanident", "", "dst", "src"],
+            # "params": ["msg_id", "", "dst", "src", "chanident", "absolutedistance"],
         },
         {
             "msg_id": 0x046A,
@@ -1282,7 +1283,7 @@ cmd_list = {
             "struct": "<Hl2hL",
             "params": [
                 "msg_id",
-                "0x0E",
+                "",
                 "dst",
                 "src",
                 "chanident",
@@ -2082,7 +2083,7 @@ cmd_list = {
             "fxn_name": "mot_set_kcubetrigioconfig",
             "header_only": False,
             "has_subcmds": False,
-            "struct": "<6H10s",
+            "struct": "<6HQH",  # should be 6H10s but cant set strings to 0 (will fix at some point)
             "params": [
                 "msg_id",
                 "",
@@ -2093,6 +2094,7 @@ cmd_list = {
                 "trig1polarity",
                 "trig2mode",
                 "trig2polarity",
+                "",
                 "",
                 "",
             ],
@@ -4166,8 +4168,7 @@ def cleanup():
                 try:
                     assert len(c["params"]) >= 4
 
-                    if c["msg_id"] != 0x0466:  # 0x0466 is a special case
-                        assert c["params"][1] == ""
+                    assert c["params"][1] == ""
                     assert c["params"][2] == "dst"
                     assert c["params"][3] == "src"
 

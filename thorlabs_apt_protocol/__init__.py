@@ -1,6 +1,6 @@
 """Work with Thorlabs APT protocol"""
 
-__version__ = "1.0.3"
+__version__ = "1.0.4"
 
 from . import cmd_defs
 
