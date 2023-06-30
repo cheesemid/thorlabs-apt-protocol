@@ -1933,7 +1933,7 @@ cmd_list = {
             "fxn_name": "mot_get_ustatusupdate",  # add fxn for status bit parsing
             "header_only": False,
             "has_subcmds": False,
-            "struct": "<HL2HL",
+            "struct": "<Hl2HL",
             "params": [
                 "msg_id",
                 "",
