@@ -9,7 +9,16 @@
 # Issue 37 from 22 May 2023
 #
 ########################################
-
+# Warning
+#
+# There are errors in the commands below
+# (maybe even more than in the APT doc)
+# 
+# Make sure to check each command carefully
+# in the APT Protocol document before using
+#
+# Use at your own risk
+########################################
 
 import string
 import struct
@@ -1904,7 +1913,7 @@ cmd_list = {
             "fxn_name": "mot_get_statusupdate",
             "header_only": False,
             "has_subcmds": False,
-            "struct": "<H3LH3L",
+            "struct": "<Hl2LH3L",
             "params": [
                 "msg_id",
                 "",
