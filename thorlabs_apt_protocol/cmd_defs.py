@@ -13,7 +13,7 @@
 #
 # There are errors in the commands below
 # (maybe even more than in the APT doc)
-# 
+#
 # Make sure to check each command carefully
 # in the APT Protocol document before using
 #
@@ -2577,7 +2577,7 @@ cmd_list = {
                 "lvoutrange",
                 "lvoutroute",
                 "hvoutrange",
-                "signoutroute",
+                "signioroute",
             ],
         },
         {
@@ -2602,7 +2602,7 @@ cmd_list = {
                 "lvoutrange",
                 "lvoutroute",
                 "hvoutrange",
-                "signoutroute",
+                "signioroute",
             ],
         },
     ],
