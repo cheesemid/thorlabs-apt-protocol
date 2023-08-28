@@ -3372,7 +3372,7 @@ cmd_list = {
             "fxn_name": "pz_set_nttrackthreshold",
             "header_only": False,
             "has_subcmds": False,
-            "struct": "<L",
+            "struct": "<f",
             "params": ["msg_id", "", "dst", "src", "thresholdabsreading"],
         },
         {
@@ -3388,7 +3388,7 @@ cmd_list = {
             "fxn_name": "pz_get_nttrackthreshold",
             "header_only": False,
             "has_subcmds": False,
-            "struct": "<L",
+            "struct": "<f",
             "params": ["msg_id", "", "dst", "src", "thresholdabsreading"],
         },
         {
