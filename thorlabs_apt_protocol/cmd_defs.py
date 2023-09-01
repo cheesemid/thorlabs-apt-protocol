@@ -3802,7 +3802,7 @@ cmd_list = {
             "fxn_name": "pz_get_ntstatusupdate",
             "header_only": False,
             "has_subcmds": False,
-            "struct": "<3Hf3HL3H",
+            "struct": "<3Hf3HL3HH",
             "params": [
                 "msg_id",
                 "",
@@ -3819,6 +3819,7 @@ cmd_list = {
                 "ntgain",
                 "phasecompa",
                 "phasecompb",
+                "",
             ],
         },
         {
